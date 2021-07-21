@@ -19,3 +19,18 @@
             - avance todas as etapas mantendo o default
             - o usuario pode ser aula
             - a senha 1234 ( nota essa senha sera pedida varias vezes por isto de tornar ela facil para as aulas )
+    
+
+## instalando aplicações
+
+- git no bash ( terminal ) rodar: 
+    > $ apt update
+    > $ apt install git
+    - autenticar git
+        > TODO
+    
+- jetbrains toolbox no bash ( terminal ) rodar: 
+    > $ wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.21.9547.tar.gz
+    > $ tar -zxvf jetbrains-toolbox-1.21.9547.tar.gz
+    > $ ./jetbrains-toolbox-1.21.9547/jetbrains-toolbox 
+    > baixar pelo toolbox o goland
