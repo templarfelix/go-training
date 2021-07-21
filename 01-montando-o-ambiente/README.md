@@ -25,12 +25,16 @@
 
 - git no bash ( terminal ) rodar: 
     > $ apt update
+    
     > $ apt install git
     - autenticar git
         > TODO
     
 - jetbrains toolbox no bash ( terminal ) rodar: 
     > $ wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.21.9547.tar.gz
+
     > $ tar -zxvf jetbrains-toolbox-1.21.9547.tar.gz
+
     > $ ./jetbrains-toolbox-1.21.9547/jetbrains-toolbox 
+
     > baixar pelo toolbox o goland
