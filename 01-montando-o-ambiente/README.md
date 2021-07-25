@@ -1,9 +1,9 @@
 	- vm para o ambiente
 		- instalar o vmware workstation pro
-            - download em: https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html )
+            - download em: [workstation-pro-evaluation.html](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html)
         
 		- baixar a iso do linux mint 
-            - download em https://mint.itsbrasil.net/iso/stable/20.2/linuxmint-20.2-cinnamon-64bit.iso
+            - download em [linuxmint-20.2-cinnamon-64bit.iso](https://mint.itsbrasil.net/iso/stable/20.2/linuxmint-20.2-cinnamon-64bit.iso)
 
     - instalando o linux mint
         - instruções da criação da vm
@@ -27,8 +27,26 @@
     > $ apt update
     
     > $ apt install git
+
+    - create github account
+
+      - https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home
+
     - autenticar git
-        > TODO
+      - 
+
+    > $ ssh-keygen -t ed25519 -C "your_email@example.com"
+
+    > $ sudo apt-get update
+
+    > $ sudo apt-get install xclip
+
+    - copiar a chave ssh para o clipboard do linux
+
+    > $ xclip -selection clipboard < ~/.ssh/id_ed25519.pub 
+
+    - adicionar a chave ssh nomeada aula no link (https://github.com/settings/keys)[https://github.com/settings/keys]
+ 
     
 - jetbrains toolbox no bash ( terminal ) rodar: 
     > $ wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.21.9547.tar.gz
@@ -38,3 +56,29 @@
     > $ ./jetbrains-toolbox-1.21.9547/jetbrains-toolbox 
 
     > baixar pelo toolbox o goland
+
+## fazer fork do projeto go-traing
+
+- no projeto [go-training](https://github.com/templarfelix/go-training) clicke em fork e selecione sua conta e avançe até o projeto ser copiado para sua conta pessoal
+  
+## clonar repositorio go-training
+
+- no bash ( terminal ) rodar: 
+
+    > $ mkdir workspace
+
+    > $ cd workspace 
+
+    > $ git clone git@github.com:[SEU_USER_GITHUB]/go-training.git
+
+## atualizar projeto go-training com bases nos fontes do templarfelix
+
+- no bash ( terminal ) na pasta workspace/go-training rodar: 
+
+    > $ git remote add templarfelix git@github.com:templarfelix/go-training.git
+
+    > $ git fetch templarfelix
+
+    > $ git merge templarfelix/main
+
+    > $
