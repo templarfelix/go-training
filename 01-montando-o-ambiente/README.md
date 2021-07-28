@@ -3,7 +3,7 @@
             - download em: [workstation-pro-evaluation.html](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html)
         
 		- baixar a iso do linux mint 
-            - download em [linuxmint-20.2-cinnamon-64bit.iso](https://mint.itsbrasil.net/iso/stable/20.2/linuxmint-20.2-cinnamon-64bit.iso)
+            - download em [linuxmint-20.2-cinnamon-64bit.iso](http://mirror.ufscar.br/mint-cd/stable/20.2/linuxmint-20.2-cinnamon-64bit.iso)
 
     - instalando o linux mint
         - instruções da criação da vm
