@@ -45,7 +45,7 @@
 
     > $ xclip -selection clipboard < ~/.ssh/id_ed25519.pub 
 
-    - adicionar a chave ssh nomeada aula no link (https://github.com/settings/keys)[https://github.com/settings/keys]
+    - adicionar a chave ssh nomeada aula no link [https://github.com/settings/keys](https://github.com/settings/keys)
  
     
 - jetbrains toolbox no bash ( terminal ) rodar: 
