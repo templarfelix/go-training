@@ -58,3 +58,7 @@ func TestOpThen3(t *testing.T) {
 // escreva os testes para OpLessOrEqual
 
 // escreva os testes para OpGreaterOrEqual
+
+// escreva os testes para PossoFazerUmSaque
+
+// escreva os testes para StatusSaque
