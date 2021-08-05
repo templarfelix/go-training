@@ -57,6 +57,13 @@
 
     > baixar pelo toolbox o goland
 
+    -- FIXME terminar doc de import do projeto
+    > importar o projeto
+      
+      > enable go modules
+  
+      >
+
 ## fazer fork do projeto go-traing
 
 - no projeto [go-training](https://github.com/templarfelix/go-training) clicke em fork e selecione sua conta e avançe até o projeto ser copiado para sua conta pessoal
