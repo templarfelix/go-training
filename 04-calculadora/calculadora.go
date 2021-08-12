@@ -48,5 +48,6 @@ func descobrirPercentual(valor float64, valor2 float64) float64 {
 }
 
 func pow(valor float64, multiplo float64) float64 {
+
 	return math.Pow(valor, multiplo)
 }

@@ -1,7 +1,8 @@
 package main
 
 import (
-"fmt"
+	"fmt"
+	"log"
 )
 
 var ( // Declarando multiplas variáveis
@@ -28,7 +29,10 @@ func main() {
 		fmt.Printf("Olá da função anônima!\r\n")
 	}
 
+	log.Default().Printf("TESTE DO FERNANDO")
+
 	fmt.Printf("a tipo: %T\r\n", a)
+	fmt.Printf("a tipo: %T\t aa \n", a)
 	fmt.Printf("b tipo: %T\r\n", b)
 	fmt.Printf("π tipo: %T\r\n", pi)
 	fmt.Printf("ola tipo: %T\r\n", ola)
@@ -43,4 +47,12 @@ func main() {
 	fmt.Printf("valor de s = %q\r\n", s)
 
 	ola()
+	test()
+}
+
+func test() {
+}
+
+func Test() {
+
 }
