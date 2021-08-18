@@ -62,7 +62,10 @@
       
       > enable go modules
   
-      >
+- docker-compose
+  
+  > $ sudo apt install docker-compose
+  > $ sudo usermod -aG docker $USER
 
 ## fazer fork do projeto go-traing
 
@@ -89,3 +92,4 @@
     > $ git merge templarfelix/main
 
     > $
+  > 

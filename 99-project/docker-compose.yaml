@@ -1,0 +1,11 @@
+version: "3.2"
+services:
+  database:
+    container_name: database
+    image: cockroachdb/cockroach:latest
+    volumes:
+      - ./data/database:/cockroach/cockroach-data
+    command: start-single-node --accept-sql-without-tls --insecure
+    ports:
+      - "26257:26257"
+      - "8080:8080"
