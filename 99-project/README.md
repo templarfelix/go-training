@@ -1,23 +1,24 @@
--- motivo
-    vamos criar um webservice para cadastro de clientes
-    vamos criar um webservice para cadastro de contas
-    vamos criar um webservice para controle de transações
+- motivo
+    
+    - vamos criar um webservice para cadastro de clientes
+    - vamos criar um webservice para cadastro de contas
+    - vamos criar um webservice para controle de transações
 
--- endpoints
-    -- bancodofernando.com/client
-        POST - criar
-        GET - buscar
-        * DELETE - remover --> não pode
-        PATCH - atualizar
-    -- bancodofernando.com/account
-        POST - criar
-        GET - buscar
-        PATCH - atualizar
-    -- bancodofernando.com/transaction
-        POST - criar
-        GET - buscar
+- endpoints
+    - bancodofernando.com/client
+        - POST - criar
+        - GET - buscar
+        - DELETE - remover --> não pode
+        - PATCH - atualizar
+    - bancodofernando.com/account
+        - POST - criar
+        - GET - buscar
+        - PATCH - atualizar
+    - bancodofernando.com/transaction
+        - POST - criar
+        - GET - buscar
 
--- regras de negocio
+- regras de negocio
     
     - usuario
         - nome do cliente não pode ser vazio
@@ -32,7 +33,7 @@
             - se exceder o limit retornar erro HTTP.STATUS 400
                 - cliente sem limite
 
--- DER --> modelo de entidades
+- DER --> modelo de entidades
     - user
         - name
         - documentNumber
@@ -49,19 +50,19 @@
         - date
         - destinyAccount
 
--- MER -> modelo de banco de dados
-    -- user
+- MER -> modelo de banco de dados
+    - user
         - ID
         - name
         - documentNumber
         - created_at
         - updated_at
     
-   -- user_account
+   - user_account
         - user_ID
         - account_ID
     
-   -- account
+   - account
         - ID
         - accountType
         - accountNumber
@@ -70,7 +71,7 @@
         - created_at
         - updated_at
 
-   -- transaction
+   - transaction
       - ID
       - transactionType
       - value
@@ -79,6 +80,6 @@
       - created_at
       - updated_at
 
-   -- account_transaction
+   - account_transaction
       - account_ID
       - transaction_ID
