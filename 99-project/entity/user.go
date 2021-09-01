@@ -26,17 +26,17 @@ type User struct {
 }
 
 func NewUser(name string, documentNumber string) (*User, error) {
-	b := &User{
+	user := &User{
 		ID:        NewID(),
 		Name:     name,
 		DocumentNumber: documentNumber,
 		CreatedAt: time.Now(),
 	}
-	err := b.Validate()
+	err := user.Validate()
 	if err != nil {
 		return nil, err
 	}
-	return b, nil
+	return user, nil
 }
 
 // validação das regras de negocio do usuario
