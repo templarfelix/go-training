@@ -16,17 +16,16 @@ func NewService(r Repository) *Service {
 	}
 }
 
-func (s *Service) Create(b *entity.User) (entity.ID, error) {
+func (s *Service) Store(b *entity.User) (entity.ID, error) {
 	b.ID = entity.NewID()
 	b.CreatedAt = time.Now()
-	b.UpdatedAt = time.Now()
 
 	err := b.Validate()
 	if err != nil {
 		return entity.NewID(), err
 	}
 
-	return s.repo.Create(b)
+	return s.repo.Store(b)
 }
 
 func (s *Service) Find(id entity.ID) (*entity.User, error) {
