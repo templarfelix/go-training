@@ -9,7 +9,7 @@ import (
 func RegisterUserHandlers(e *echo.Echo, service *Service) {
 	e.GET("/v1/users/:id", Find(service))
 	e.GET("/v1/users", FindAll(service))
-	e.POST("/v1/users", Store(service))
+	e.POST("/v1/users", Create(service))
 }
 
 func Find(service *Service) func(echo.Context) error {
@@ -40,7 +40,7 @@ func FindAll(service *Service) func(echo.Context) error {
 	}
 }
 
-func Store(service *Service) func(echo.Context) error {
+func Create(service *Service) func(echo.Context) error {
 
 	return func(c echo.Context) error {
 
