@@ -9,16 +9,11 @@ type Reader interface {
 }
 
 type Writer interface {
-	Store(b *entity.User) (entity.ID, error)
+	Create(b *entity.User) (entity.ID, error)
 	Delete(id entity.ID) error
 }
 
 type Repository interface {
-	Reader
-	Writer
-}
-
-type UseCase interface {
 	Reader
 	Writer
 }

@@ -6,7 +6,7 @@ import (
 )
 
 type User struct {
-	ID             ID        `json:"id", gorm:"column:id"`
+	ID             ID        `json:"id", gorm:"primaryKey, column:id"`
 	Name           string    `json:"name", gorm:"column:name"`
 	DocumentNumber string    `json:"document_number", gorm:"column:document_number"`
 	CreatedAt      time.Time `json:"created_at", gorm:"column:created_at"`

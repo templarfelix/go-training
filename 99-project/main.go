@@ -37,7 +37,6 @@ func main() {
 	userService := user.NewService(userRepo)
 
 	// server web
-	// Echo instance
 	e := echo.New()
 
 	// Middleware
