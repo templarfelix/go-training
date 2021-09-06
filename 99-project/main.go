@@ -12,10 +12,6 @@ import (
 	gormlogger "gorm.io/gorm/logger"
 )
 
-type dbops struct {
-	db *gorm.DB
-}
-
 func main() {
 
 	// logger
@@ -30,10 +26,8 @@ func main() {
 	dbConnection, err := gorm.Open(postgres.Open(dsn), &gorm.Config{Logger: gormLogger})
 	checkErr(err)
 
-	db := dbops{dbConnection}
-
 	// repository
-	userRepo := user.NewGormRepository(db.db)
+	userRepo := user.NewGormRepository(dbConnection)
 	userService := user.NewService(userRepo)
 
 	// server web
