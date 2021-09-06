@@ -1,48 +1,55 @@
 package main
 
 import (
-	"99-project/dbconfig"
-	"99-project/entity"
-	"database/sql"
-	"fmt"
-	_ "github.com/lib/pq"
+	"99-project/user"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+	"go.uber.org/zap"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"moul.io/zapgorm2"
+
+	gormlogger "gorm.io/gorm/logger"
 )
 
-var db *sql.DB
-var err error
+type dbops struct {
+	db *gorm.DB
+}
 
 func main() {
 
-	fmt.Printf("Accessing %s ... ", dbconfig.DbName)
+	// logger
+	logger, _ := zap.NewProduction()
+	defer logger.Sync()
+	zap.ReplaceGlobals(logger)
+	zap.L().Info("init application")
 
-	db, err = sql.Open(dbconfig.PostgresDriver, fmt.Sprintf("postgres://root@%s:%s/project?sslmode=disable",dbconfig.Host, dbconfig.Port ))
-
-	if err != nil {
-		panic(err.Error())
-	} else {
-		fmt.Println("Connected!")
-	}
-
-	defer db.Close()
-
-	sqlSelect()
-}
-
-
-func sqlSelect() {
-
-	sqlStatement, err := db.Query("SELECT id, name, documentnumber FROM users")
+	// db
+	gormLogger := zapgorm2.New(zap.L()).LogMode(gormlogger.Info)
+	dsn := "host=localhost user=root dbname=project port=26257 sslmode=disable TimeZone=GMT"
+	dbConnection, err := gorm.Open(postgres.Open(dsn), &gorm.Config{Logger: gormLogger})
 	checkErr(err)
 
-	for sqlStatement.Next() {
+	db := dbops{dbConnection}
 
-		var entity entity.User
+	// repository
+	userRepo := user.NewGormRepository(db.db)
+	userService := user.NewService(userRepo)
 
-		err = sqlStatement.Scan(&entity.ID, &entity.Name, &entity.DocumentNumber)
-		checkErr(err)
+	// server web
+	// Echo instance
+	e := echo.New()
 
-		fmt.Printf("%d\t%s\t%s \n", entity.ID, entity.Name, entity.DocumentNumber)
-	}
+	// Middleware
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+
+	// register handlers
+	user.RegisterUserHandlers(e, userService)
+
+	// Start server
+	e.Logger.Fatal(e.Start(":9090"))
+
 }
 
 func checkErr(err error) {

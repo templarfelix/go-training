@@ -51,35 +51,60 @@
         - destinyAccount
 
 - MER -> modelo de banco de dados
-    - user
+    - users
         - ID
         - name
         - documentNumber
         - created_at
         - updated_at
-    
-   - user_account
-        - user_ID
-        - account_ID
-    
-   - account
-        - ID
-        - accountType
-        - accountNumber
-        - amount
-        - limit
-        - created_at
-        - updated_at
 
-   - transaction
-      - ID
-      - transactionType
-      - value
-      - date
-      - destinyAccount -> account
-      - created_at
-      - updated_at
+```
+CREATE TABLE users (
+    id UUID NOT NULL,
+    name VARCHAR(255),
+    documentNumber TEXT,
+    created_at date,
+    updated_at date
+);
+```
+    - accounts
+         - ID
+         - user_ID
+         - accountType
+         - accountNumber
+         - amount
+         - limit
+         - created_at
+         - updated_at
 
-   - account_transaction
-      - account_ID
-      - transaction_ID
+    - transaction
+       - ID
+       - transactionType
+       - value
+       - date
+       - destinyAccount -> account
+       - created_at
+       - updated_at
+
+    - account_transaction
+       - account_ID
+       - transaction_ID
+
+
+
+## ARQUITETURA BASEADA EM:
+
+https://echo.labstack.com/cookbook/crud/
+https://stackoverflow.com/questions/13319165/go-fmt-on-a-whole-source-tree
+
+
+// criar
+curl -X POST \
+-H 'Content-Type: application/json' \
+-d '{"name":"Teste 1", "document_number": "212.712.270-45"}' \
+localhost:9090/v1/users
+
+// listar todos
+curl -X GET \
+-H 'Content-Type: application/json' \
+localhost:9090/v1/users

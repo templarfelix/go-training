@@ -1,55 +1,24 @@
 package entity
 
 import (
-	"context"
 	"github.com/paemuri/brdoc"
 	"time"
 )
 
-// https://bancodofernando.com/user/123e4567-e89b-12d3-a456-426614174000
-// https://bancodofernando.com/user/2
-// https://bancodofernando.com/user/3
-// https://bancodofernando.com/user/4
-/*
-	ID, NAME, DOCUMENT_NUMBER, CREATED_AT, UPDATED_AT
-     1, FERNANDO, 0000, xx,xx
-     2, ZE, 0000, xx,xx
-     3, ZE, 0000, xx,xx
-     123e4567-e89b-12d3-a456-426614174000,  FERNANDO, 0000, xx, xx
-*/
 type User struct {
-	ID        ID
-	Name     string
-	DocumentNumber string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ID             ID        `json:"id", gorm:"column:id"`
+	Name           string    `json:"name", gorm:"column:name"`
+	DocumentNumber string    `json:"document_number", gorm:"column:document_number"`
+	CreatedAt      time.Time `json:"created_at", gorm:"column:created_at"`
+	UpdatedAt      time.Time `json:"updated_at", gorm:"column:updated_at"`
 }
 
-func NewUser(name string, documentNumber string) (*User, error) {
-	user := &User{
-		ID:        NewID(),
-		Name:     name,
-		DocumentNumber: documentNumber,
-		CreatedAt: time.Now(),
-	}
-	err := user.Validate()
-	if err != nil {
-		return nil, err
-	}
-	return user, nil
-}
-
-// validação das regras de negocio do usuario
-func (b *User) Validate() error {
-	if b.Name == "" {
+func (entity *User) Validate() error {
+	if entity.Name == "" {
 		return ErrInvalidEntity
 	}
-	if !brdoc.IsCPF(b.DocumentNumber) {
+	if !brdoc.IsCPF(entity.DocumentNumber) {
 		return ErrDocumentNumberInvalid
 	}
 	return nil
-}
-
-type UserRepository interface {
-	GetByID(ctx context.Context, id ID) (User, error)
 }
