@@ -6,36 +6,38 @@ import (
 )
 
 type GormRepository struct {
-	db   *gorm.DB
+	db *gorm.DB
 }
 
-func NewGormRepository(db   *gorm.DB) *GormRepository {
+func NewGormRepository(db *gorm.DB) *GormRepository {
 	return &GormRepository{
-		db:   db,
+		db: db,
 	}
 }
 
-func (r *GormRepository) Find(id entity.ID) (*entity.User, error) {
+func (repository *GormRepository) Find(id entity.ID) (*entity.User, error) {
 	result := entity.User{}
-
-	r.db.First(result, id)
-
-	return &result, nil
-
+	tx := repository.db.First(&result, "id", id.String())
+	return &result, tx.Error
 }
 
-func (r *GormRepository) Store(b *entity.User) (entity.ID, error) {
-	return entity.NewID(), nil
+func (repository *GormRepository) Create(user *entity.User) (entity.ID, error) {
+	tx := repository.db.Create(user)
+	return user.ID, tx.Error
 }
 
-func (r *GormRepository) FindAll() ([]*entity.User, error) {
+func (repository *GormRepository) FindAll() ([]*entity.User, error) {
+	var users []*entity.User
+	tx := repository.db.Find(&users)
+	return users, tx.Error
+}
+
+// FIXME IMPLEMENTAR
+func (repository *GormRepository) Search(query string) ([]*entity.User, error) {
 	return nil, nil
 }
 
-func (r *GormRepository) Search(query string) ([]*entity.User, error) {
-	return nil, nil
-}
-
-func (r *GormRepository) Delete(id entity.ID) error {
+// FIXME IMPLEMENTAR
+func (repository *GormRepository) Delete(id entity.ID) error {
 	return nil
 }

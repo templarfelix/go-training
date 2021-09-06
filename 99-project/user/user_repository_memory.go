@@ -16,7 +16,7 @@ func NewMemorymRepository() *IRepo {
 	}
 }
 
-func (r *IRepo) Store(a *entity.User) (entity.ID, error) {
+func (r *IRepo) Create(a *entity.User) (entity.ID, error) {
 	r.m[a.ID.String()] = a
 	return a.ID, nil
 }

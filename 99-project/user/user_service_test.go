@@ -13,7 +13,7 @@ func TestStore(t *testing.T) {
 		Name:        "Test",
 		DocumentNumber: "212.712.270-45",
 	}
-	id, err := service.Store(b)
+	id, err := service.Create(b)
 	assert.Nil(t, err)
 	assert.NotNil(t, id)
 	assert.False(t, b.CreatedAt.IsZero())
@@ -30,8 +30,8 @@ func TestSearchAndFindAll(t *testing.T) {
 		Name:        "Google",
 		DocumentNumber: "212.712.270-45",
 	}
-	bID, _ := service.Store(b)
-	_, _ = service.Store(b2)
+	bID, _ := service.Create(b)
+	_, _ = service.Create(b2)
 
 	t.Run("search", func(t *testing.T) {
 		c, err := service.Search("Test")
@@ -67,8 +67,8 @@ func TestDelete(t *testing.T) {
 		Name:        "Google",
 		DocumentNumber: "212.712.270-45",
 	}
-	bID, _ := service.Store(b)
-	b2ID, _ := service.Store(b2)
+	bID, _ := service.Create(b)
+	b2ID, _ := service.Create(b2)
 
 	err := service.Delete(bID)
 	assert.Equal(t, nil, err)

@@ -16,7 +16,7 @@ func NewService(r Repository) *Service {
 	}
 }
 
-func (s *Service) Store(b *entity.User) (entity.ID, error) {
+func (s *Service) Create(b *entity.User) (entity.ID, error) {
 	b.ID = entity.NewID()
 	b.CreatedAt = time.Now()
 
@@ -25,7 +25,7 @@ func (s *Service) Store(b *entity.User) (entity.ID, error) {
 		return entity.NewID(), err
 	}
 
-	return s.repo.Store(b)
+	return s.repo.Create(b)
 }
 
 func (s *Service) Find(id entity.ID) (*entity.User, error) {
