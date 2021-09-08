@@ -37,7 +37,8 @@ func (repository *GormRepository) Search(query string) ([]*entity.User, error) {
 	return nil, nil
 }
 
-// FIXME IMPLEMENTAR
 func (repository *GormRepository) Delete(id entity.ID) error {
-	return nil
+	var users *entity.User
+	tx := repository.db.Delete(&users, id)
+	return tx.Error
 }

@@ -10,6 +10,7 @@ func RegisterUserHandlers(e *echo.Echo, service *Service) {
 	e.GET("/v1/users/:id", Find(service))
 	e.GET("/v1/users", FindAll(service))
 	e.POST("/v1/users", Create(service))
+	e.DELETE("/v1/users/:id", Delete(service))
 }
 
 func Find(service *Service) func(echo.Context) error {
@@ -50,6 +51,25 @@ func Create(service *Service) func(echo.Context) error {
 		}
 
 		id, err := service.Create(u)
+
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, err.Error())
+		}
+
+		return c.JSON(http.StatusOK, id)
+	}
+}
+
+func Delete(service *Service) func(echo.Context) error {
+
+	return func(c echo.Context) error {
+
+		id , err := entity.StringToID(c.Param("id"))
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, err)
+		}
+
+		err = service.Delete(id)
 
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, err.Error())

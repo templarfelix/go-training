@@ -28,6 +28,8 @@ func main() {
 
 	// repository
 	userRepo := user.NewGormRepository(dbConnection)
+
+	// service
 	userService := user.NewService(userRepo)
 
 	// server web
