@@ -6,11 +6,11 @@ import (
 )
 
 type User struct {
-	ID             ID        `json:"id", gorm:"primaryKey, column:id"`
-	Name           string    `json:"name", gorm:"column:name"`
-	DocumentNumber string    `json:"document_number", gorm:"column:document_number"`
-	CreatedAt      time.Time `json:"created_at", gorm:"column:created_at"`
-	UpdatedAt      time.Time `json:"updated_at", gorm:"column:updated_at"`
+	ID             ID        `json:"id" gorm:"primaryKey, column:id"`
+	Name           string    `json:"name" gorm:"column:name"`
+	DocumentNumber string    `json:"document_number" gorm:"column:document_number"`
+	CreatedAt      time.Time `json:"created_at" gorm:"column:created_at"`
+	UpdatedAt      time.Time `json:"updated_at" gorm:"column:updated_at"`
 }
 
 func (entity *User) Validate() error {

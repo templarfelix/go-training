@@ -20,6 +20,7 @@ func NewService(r Repository) *Service {
 func (s *Service) Create(b *entity.Account) (entity.ID, error) {
 	b.ID = entity.NewID()
 	b.CreatedAt = time.Now()
+	b.Status = entity.ACTIVE
 
 	err := b.Validate()
 	if err != nil {

@@ -28,7 +28,7 @@ func (repository *GormRepository) Create(Account *entity.Account) (entity.ID, er
 
 func (repository *GormRepository) FindAll() ([]*entity.Account, error) {
 	var Accounts []*entity.Account
-	tx := repository.db.Find(&Accounts)
+	tx := repository.db.Where("status", entity.ACTIVE).Find(&Accounts)
 	return Accounts, tx.Error
 }
 
@@ -38,7 +38,14 @@ func (repository *GormRepository) Search(query string) ([]*entity.Account, error
 }
 
 func (repository *GormRepository) Delete(id entity.ID) error {
-	var Accounts *entity.Account
-	tx := repository.db.Delete(&Accounts, id)
+	Account, err := repository.Find(id)
+
+	if err != nil {
+		return err
+	}
+
+	Account.Status = entity.DELETED
+	tx := repository.db.Save(&Account)
+
 	return tx.Error
 }
