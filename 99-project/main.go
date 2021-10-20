@@ -36,7 +36,7 @@ func main() {
 	// service
 	userService := user.NewService(userRepo)
 	accountService := account.NewService(accountRepo)
-	transactionService := transaction.NewService(transactionRepo)
+	transactionService := transaction.NewService(transactionRepo, accountService)
 
 	// server web
 	e := echo.New()

@@ -1,18 +1,22 @@
 package transaction
 
 import (
+	"99-project/account"
 	"99-project/entity"
+	"fmt"
 	"strings"
 	"time"
 )
 
 type Service struct {
-	repo Repository
+	repo           Repository
+	accountService account.Service
 }
 
-func NewService(r Repository) *Service {
+func NewService(r Repository, a *account.Service) *Service {
 	return &Service{
-		repo: r,
+		repo:           r,
+		accountService: *a,
 	}
 }
 
@@ -24,6 +28,15 @@ func (s *Service) Create(b *entity.Transaction) (entity.ID, error) {
 	if err != nil {
 		return entity.NewID(), err
 	}
+
+	// FIXME REGRA DE ACCOUTNS AQUI
+
+	account, err := s.accountService.Find(b.AccountID)
+	if err != nil {
+		return entity.NewID(), err
+	}
+
+	fmt.Println(account)
 
 	return s.repo.Create(b)
 }
