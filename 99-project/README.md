@@ -5,7 +5,7 @@
     - vamos criar um webservice para controle de transações
 
 - endpoints
-    - bancodofernando.com/client
+    - bancodofernando.com/user
         - POST - criar
         - GET - buscar
         - DELETE - remover --> não pode
@@ -46,9 +46,10 @@
         - transactions[]
     - transactions
         - transactionType
+        - account
         - value
         - date
-        - destinyAccount
+        *- destinyAccount
 
 - MER -> modelo de banco de dados
     - users

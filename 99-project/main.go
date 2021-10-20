@@ -2,6 +2,7 @@ package main
 
 import (
 	"99-project/account"
+	"99-project/transaction"
 	"99-project/user"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -30,10 +31,12 @@ func main() {
 	// repository
 	userRepo := user.NewGormRepository(dbConnection)
 	accountRepo := account.NewGormRepository(dbConnection)
+	transactionRepo := transaction.NewGormRepository(dbConnection)
 
 	// service
 	userService := user.NewService(userRepo)
 	accountService := account.NewService(accountRepo)
+	transactionService := transaction.NewService(transactionRepo)
 
 	// server web
 	e := echo.New()
@@ -45,6 +48,7 @@ func main() {
 	// register handlers
 	user.RegisterUserHandlers(e, userService)
 	account.RegisterAccountHandlers(e, accountService)
+	transaction.RegisterTransactionHandlers(e, transactionService)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":9090"))
