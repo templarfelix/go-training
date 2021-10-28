@@ -32,6 +32,7 @@
         - transações não podem exceder o limite
             - se exceder o limit retornar erro HTTP.STATUS 400
                 - cliente sem limite
+        - remover ou creditar saldo na conta
 
 - DER --> modelo de entidades
     - user

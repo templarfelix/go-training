@@ -14,8 +14,8 @@ type Transaction struct {
 }
 
 func (entity *Transaction) Validate() error {
-	if entity.Value != 0 {
-		return ErrInvalidEntity
+	if entity.Value == 0 {
+		return ErrValueInvalidEntity
 	}
 	return nil
 }

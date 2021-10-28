@@ -1,6 +1,5 @@
 package account
 
-
 import (
 	"99-project/entity"
 	"strings"
@@ -30,6 +29,26 @@ func (s *Service) Create(b *entity.Account) (entity.ID, error) {
 	return s.repo.Create(b)
 }
 
+func (s *Service) UpdateAmount(id entity.ID, transactionType entity.TransactionType, value float64) error {
+
+	account, err := s.Find(id)
+	if err != nil {
+		return err
+	}
+	if transactionType == entity.CREDIT {
+		account.Amount += value
+	} else if transactionType == entity.DEBIT {
+		account.Amount -= value
+	}
+
+	err = s.repo.Save(account)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (s *Service) Find(id entity.ID) (*entity.Account, error) {
 	return s.repo.Find(id)
 }
@@ -45,4 +64,3 @@ func (s *Service) FindAll() ([]*entity.Account, error) {
 func (s *Service) Delete(id entity.ID) error {
 	return s.repo.Delete(id)
 }
-

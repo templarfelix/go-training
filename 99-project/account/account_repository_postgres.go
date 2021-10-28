@@ -26,6 +26,11 @@ func (repository *GormRepository) Create(Account *entity.Account) (entity.ID, er
 	return Account.ID, tx.Error
 }
 
+func (repository *GormRepository) Save(Account *entity.Account) error {
+	tx := repository.db.Save(Account)
+	return tx.Error
+}
+
 func (repository *GormRepository) FindAll() ([]*entity.Account, error) {
 	var Accounts []*entity.Account
 	tx := repository.db.Where("status", entity.ACTIVE).Find(&Accounts)

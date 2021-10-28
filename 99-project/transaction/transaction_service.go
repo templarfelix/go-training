@@ -3,7 +3,6 @@ package transaction
 import (
 	"99-project/account"
 	"99-project/entity"
-	"fmt"
 	"strings"
 	"time"
 )
@@ -29,14 +28,11 @@ func (s *Service) Create(b *entity.Transaction) (entity.ID, error) {
 		return entity.NewID(), err
 	}
 
-	// FIXME REGRA DE ACCOUTNS AQUI
-
-	account, err := s.accountService.Find(b.AccountID)
+	// call accounts rules
+	err = s.accountService.UpdateAmount(b.AccountID, b.TransactionType, b.Value)
 	if err != nil {
 		return entity.NewID(), err
 	}
-
-	fmt.Println(account)
 
 	return s.repo.Create(b)
 }

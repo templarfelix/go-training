@@ -10,6 +10,7 @@ type Reader interface {
 
 type Writer interface {
 	Create(b *entity.Account) (entity.ID, error)
+	Save(b *entity.Account) error
 	Delete(id entity.ID) error
 }
 
