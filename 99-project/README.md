@@ -28,11 +28,22 @@
         - numero da conta não pode ser vazio
     
     - transação
-        - somente aceitar contas validas
-        - transações não podem exceder o limite
-            - se exceder o limit retornar erro HTTP.STATUS 400
-                - cliente sem limite
-        - remover ou creditar saldo na conta
+      - criar transação
+          - somente aceitar contas validas
+          - transações não podem exceder o limite
+              - se exceder o limit retornar erro HTTP.STATUS 400
+                  - cliente sem limite
+          - remover ou creditar saldo na conta
+      - consultar transações
+        - id conta
+        - init date >= data
+        - end date <= data
+        - init date = 10/10/2010 end date = 11/10/2010
+          - where transactions.id = id and date >= init date and date <= end date
+        - init date = 10/10/2010
+          - where transactions.id = id and date >= init date
+        - end date = 11/10/2010
+          - where transactions.id = id and date <= end date
 
 - DER --> modelo de entidades
     - user
